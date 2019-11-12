@@ -2,7 +2,8 @@
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject ball;
+    GameObject ball;
+    public GameObject ballPrefab;
     public GameObject paddle;
     public GameObject sideWall;
     public GameObject goalWall;
@@ -11,10 +12,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate(ball);
+        Instantiate(ballPrefab);
+        ball = GameObject.FindWithTag("Ball");
     }
 
-    public static void Score(bool player)
+    public void Score(bool player)
     {
         if (player)
         {
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
         }
 
         //TODO: Restart ball
+        Debug.Log(playerPoints);
 
     }
 }
