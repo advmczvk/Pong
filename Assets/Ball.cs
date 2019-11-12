@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.tag == "WallLeft" || collision.collider.tag == "WallRight")
         {
             dir.x *= -1;
         }

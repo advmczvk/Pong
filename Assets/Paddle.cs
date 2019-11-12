@@ -3,7 +3,7 @@
 public class Paddle : MonoBehaviour
 {
     public float speed;
-    float translation;
+    float vel;
 
     // Start is called before the first frame update
     void Start()
@@ -15,29 +15,11 @@ public class Paddle : MonoBehaviour
     void FixedUpdate()
     {
 
-        translation = Input.GetAxis("Horizontal");
-        Move(false);
-        
-    }
-
-    private void Move(bool wallHit)
-    {
-        if (!wallHit)
+        vel = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        if ((this.transform.position.x < GameObject.FindWithTag("WallLeft").transform.position.x + GameObject.FindWithTag("WallLeft").transform.localScale.x / 2 + this.transform.localScale.x / 2 && vel < 0) || (this.transform.position.x > GameObject.FindWithTag("WallRight").transform.position.x - GameObject.FindWithTag("WallLeft").transform.localScale.x / 2 - this.transform.localScale.x / 2 && vel > 0))
         {
-            this.transform.Translate(translation * Time.deltaTime * speed, 0, 0);
+            vel = 0;
         }
-        else
-        {
-            Debug.Log("In the wall!!!");
-            this.transform.Translate(0, 0, 0);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Wall"))
-        {
-            Move(true); //TODO Add movement restrictions
-        }
+        this.transform.Translate(vel, 0, 0);
     }
 }
