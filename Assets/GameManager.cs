@@ -4,10 +4,10 @@ public class GameManager : MonoBehaviour
 {
     GameObject ball;
     public GameObject ballPrefab;
-    public GameObject paddle;
+    public GameObject paddle;   
     public GameObject sideWall;
     public GameObject goalWall;
-
+    
     static int playerPoints = 0, aiPoints = 0;
 
     private void Awake()
@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
             aiPoints++;
         }
 
-        //TODO: Restart ball
         Debug.Log(playerPoints);
 
     }

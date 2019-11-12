@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour
 {
     private GameObject gm;
     public float speed = 10f;
-    Vector2 dir;
+    public Vector2 dir;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,14 +37,12 @@ public class Ball : MonoBehaviour
             this.transform.position = Vector2.zero;
             gm.GetComponent<GameManager>().Score(true);
             dir = Vector2.zero;
-            Invoke("Init", 2);
+            Invoke("Init", 1);
         }
         else
-        {
-            Debug.Log("Here");
+        { 
             float hitPoint = (collision.collider.transform.position.x - this.transform.position.x) / collision.collider.bounds.size.x;
-            Debug.Log(hitPoint);
-            dir.x = hitPoint;
+            dir.x = -hitPoint;
             dir.y *= -1;
         }
     }
