@@ -20,19 +20,21 @@ public class AIPaddle : MonoBehaviour
     void FixedUpdate()
     {
         dir = transform.position.x - ball.transform.position.x;
-        if (dir > 0)
+        if (dir < 0)
         {
             move = speed * Mathf.Min(dir, 1.0f);
         }
-        if (dir < 0)
+        else if (dir > 0)
         {
             move = -(speed * Mathf.Min(-dir, 1.0f));
         }
+        if(move > 5)
+        Debug.Log(move);
         vel = -move * Time.deltaTime;
         if ((this.transform.position.x < GameObject.FindWithTag("WallLeft").transform.position.x + GameObject.FindWithTag("WallLeft").transform.localScale.x / 2 + this.transform.localScale.x / 2 && vel < 0) || (this.transform.position.x > GameObject.FindWithTag("WallRight").transform.position.x - GameObject.FindWithTag("WallLeft").transform.localScale.x / 2 - this.transform.localScale.x / 2 && vel > 0))
         {
             vel = 0;
         }
-        transform.Translate(new Vector2(vel * speed * Time.deltaTime, 0));
+        transform.Translate(new Vector2(vel, 0));
     }
 }

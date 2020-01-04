@@ -43,7 +43,7 @@ public class Ball : MonoBehaviour
         { 
             float hitPoint = (collision.collider.transform.position.x - this.transform.position.x) / collision.collider.bounds.size.x;
             dir.x = -hitPoint;
-            dir.y *= -1;
+            dir.y *= -1.01f;
         }
     }
 }
